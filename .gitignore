@@ -3,4 +3,4 @@
 
 # ignore IntelliJ things
 .idea/
-mighty-lunatics.iml
+*.iml
