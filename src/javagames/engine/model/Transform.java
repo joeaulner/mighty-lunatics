@@ -6,6 +6,11 @@ public class Transform {
 	private Vector2f scale		= new Vector2f(1, 1);
 	private float rotation		= 0.0f;
 	
+	public void translate(Vector2f vector) {
+		this.position.x += vector.x;
+		this.position.y += vector.y;
+	}
+	
 	/**
 	 * Returns the velocity
 	 * @return the velocity
