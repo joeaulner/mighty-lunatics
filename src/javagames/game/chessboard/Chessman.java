@@ -30,7 +30,7 @@ public abstract class Chessman extends SpriteObject {
 		}
 	}
 	
-    public abstract Index2D[] MoveablePositions();
+    public abstract Index2D[] moveablePositions();
     
-    public abstract int ScoreValue();
+    public abstract int scoreValue();
 }
