@@ -13,8 +13,8 @@ public abstract class Chessman extends SpriteObject {
 	
 	public void moveTo(Vector2f position) {
 		this.targetPosition = new Vector2f(position.x, position.y);
-        this.shouldMove = true;
-    }
+        	this.shouldMove = true;
+    	}
 	 
 	@Override
 	public void updateWorld(float delta) {
