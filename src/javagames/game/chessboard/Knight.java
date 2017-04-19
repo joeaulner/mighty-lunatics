@@ -1,23 +1,12 @@
 package javagames.game.chessboard;
 import javagames.game.structs.Index2D;
-/// <summary>
-/// Knight is a class used to refer to any Knight object meant to move between tiles of
-/// the chessboard.
-/// 
-/// <list type="Knight">
-/// <item>
-/// <term>Author</term>
-/// <description>Nathan Skalka (nathansmail@cox.net)</description>
-/// </item>
-/// <item>
-/// <term>Copyright</term>
-/// <description>Nathan Skalka (c) 2015</description>
-/// </item>
-/// </list>
-/// 
-/// </summary>
+
 public final class Knight extends Chessman {
-	
+
+    /**
+     * @see Chessman#moveablePositions()
+     * @return An array of potential movement Positions (2D).
+     */
 	@Override
     public Index2D[] moveablePositions() {
         return new Index2D[] {
@@ -34,7 +23,11 @@ public final class Knight extends Chessman {
             Index2D.add(Index2D.down, Index2D.mul(2, Index2D.left))
         };
     }
-    
+
+    /**
+     * @see Chessman#scoreValue()
+     * @return The point value of this Chessman object.
+     */
     @Override
     public int scoreValue() {   return 40;  }
 }

@@ -10,12 +10,12 @@ public abstract class Chessman extends SpriteObject {
 	protected Color color;
 	private boolean shouldMove = false;
 	private Vector2f targetPosition = null;
-	
+
 	public void moveTo(Vector2f position) {
 		this.targetPosition = new Vector2f(position.x, position.y);
-        	this.shouldMove = true;
-    	}
-	 
+		this.shouldMove = true;
+	}
+
 	@Override
 	public void updateWorld(float delta) {
 		super.updateWorld(delta);
@@ -29,8 +29,16 @@ public abstract class Chessman extends SpriteObject {
 			this.getTransform().translate(direction.mul(0.15f));
 		}
 	}
-	
+
+	/**
+	 * Returns all possible movement positions.
+	 * @return An array of potential movement Positions (2D).
+	 */
     public abstract Index2D[] moveablePositions();
-    
+
+	/**
+	 * Returns the point value when three of this piece are matched.
+	 * @return The point value of this Chessman object.
+	 */
     public abstract int scoreValue();
 }

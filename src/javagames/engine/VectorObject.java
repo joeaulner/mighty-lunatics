@@ -17,7 +17,7 @@ public class VectorObject implements GameObject {
 	private Color color = Color.BLACK;
 	
 	/**
-	 * @see javagames.engine.InputLisenter#processInput(float)
+	 * @see javagames.engine.interfaces.InputListener#processInput(float)
 	 */
 	@Override
 	public void processInput(float delta) {
@@ -27,7 +27,7 @@ public class VectorObject implements GameObject {
 	}
 	
 	/**
-	 * @see javagames.engine.Drawable#updateWorld(float)
+	 * @see javagames.engine.interfaces.Drawable#updateWorld(float)
 	 * Updates the matrix to the current position of the
 	 * VectorObject.
 	 * 
@@ -45,7 +45,7 @@ public class VectorObject implements GameObject {
 	}
 	
 	/**
-	 * @see javagames.engine.Drawable#render(Graphics g)
+	 * @see javagames.engine.interfaces.Drawable#render(Graphics g)
 	 * 
 	 * Renders the Vector graphic based on the points collection
 	 * given the transform provided and modified from this class.
@@ -85,8 +85,8 @@ public class VectorObject implements GameObject {
 	}
 
 	/**
-	 * Returns the drawing color of the VetorObject
-	 * @return the drawing color of the VetorObject
+	 * Returns the drawing color of the VectorObject
+	 * @return the drawing color of the VectorObject
 	 */
 	public Color getColor() {
 		return color;

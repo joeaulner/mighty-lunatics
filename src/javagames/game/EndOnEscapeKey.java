@@ -8,7 +8,7 @@ import javagames.engine.interfaces.InputListener;
 
 public class EndOnEscapeKey implements InputListener {
 	/**
-	 * @see javagames.engine.InputLisenter#processInput(float)
+	 * @see javagames.engine.interfaces.InputListener#processInput(float)
 	 * This object checks if the escape key has been
 	 * pressed and signals the main program to stop
 	 * running
