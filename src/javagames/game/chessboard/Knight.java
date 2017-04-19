@@ -29,5 +29,7 @@ public final class Knight extends Chessman {
      * @return The point value of this Chessman object.
      */
     @Override
-    public int scoreValue() {   return 40;  }
+    public int scoreValue() {
+        return 5;
+    }
 }
