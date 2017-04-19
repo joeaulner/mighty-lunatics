@@ -17,20 +17,21 @@ import javagames.game.structs.Index2D;
 /// 
 /// </summary>
 public final class Knight extends Chessman {
-    @Override
-    public Index2D[] soveablePositions() {
+	
+	@Override
+    public Index2D[] moveablePositions() {
         return new Index2D[] {
-            Index2D.mul(Index2D.up, 2) + Index2D.right,
-            Index2D.mul(Index2D.up, 2) + Index2D.left,
+            Index2D.add(Index2D.mul(2, Index2D.up), Index2D.right),
+            Index2D.add(Index2D.mul(2, Index2D.up), Index2D.left),
 
-            Index2D.up + Index2D.mul(Index2D.right, 2),
-            Index2D.down + Index2D.mul(Index2D.right, 2),
+            Index2D.add(Index2D.up, Index2D.mul(2, Index2D.right)),
+            Index2D.add(Index2D.down, Index2D.mul(2, Index2D.right)),
 
-            Index2D.mul(Index2D.down, 2) + Index2D.right,
-            Index2D.mul(Index2D.down, 2) + Index2D.left,
+            Index2D.add(Index2D.mul(2, Index2D.down), Index2D.right),
+            Index2D.add(Index2D.mul(2, Index2D.down), Index2D.left),
 
-            Index2D.up + Index2D.mul(Index2D.left, 2),
-            Index2D.down + Index2D.mul(Index2D.left, 2)
+            Index2D.add(Index2D.up, Index2D.mul(2, Index2D.left)),
+            Index2D.add(Index2D.down, Index2D.mul(2, Index2D.left))
         };
     }
     
