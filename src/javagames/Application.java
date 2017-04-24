@@ -9,7 +9,7 @@ import javagames.engine.components.CollisionComponent;
 import javagames.engine.interfaces.Collider;
 import javagames.engine.interfaces.InputListener;
 import javagames.engine.util.CollisionChecker;
-import javagames.game.AnimatedObject;
+import javagames.game.CursorObject;
 import javagames.game.EndOnEscapeKey;
 
 public class Application {
@@ -30,7 +30,7 @@ public class Application {
 		};
 		
 		gObjects = new GameObject[] {
-			new AnimatedObject()
+			new CursorObject()
 		};
 		
 		delegate = cbc;
