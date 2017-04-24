@@ -7,13 +7,17 @@ import javagames.game.structs.Index2D;
 import javagames.engine.SpriteObject;
 
 public abstract class Chessman extends SpriteObject {
-	protected Color color;
+	private Color color;
 	private boolean shouldMove = false;
 	private Vector2f targetPosition = null;
 
 	public void moveTo(Vector2f position) {
 		this.targetPosition = new Vector2f(position.x, position.y);
 		this.shouldMove = true;
+	}
+	
+	public void stopMoving() {
+		this.shouldMove = false;
 	}
 
 	@Override
@@ -28,6 +32,14 @@ public abstract class Chessman extends SpriteObject {
 			
 			this.getTransform().translate(direction.mul(0.15f));
 		}
+	}
+	
+	public Color getColor() {
+		return this.color;
+	}
+	
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 	/**
