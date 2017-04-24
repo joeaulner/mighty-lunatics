@@ -3,6 +3,10 @@ import javagames.game.structs.Index2D;
 
 public final class Knight extends Chessman {
 
+    public Knight() {
+        super("knight");
+    }
+
     /**
      * @see Chessman#moveablePositions()
      * @return An array of potential movement Positions (2D).

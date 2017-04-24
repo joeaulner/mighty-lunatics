@@ -9,7 +9,6 @@ import javagames.engine.components.CollisionComponent;
 import javagames.engine.interfaces.Collider;
 import javagames.engine.interfaces.InputListener;
 import javagames.engine.util.CollisionChecker;
-import javagames.game.AnimatedObject;
 import javagames.game.EndOnEscapeKey;
 
 public class Application {
@@ -30,7 +29,7 @@ public class Application {
 		};
 		
 		gObjects = new GameObject[] {
-			new AnimatedObject()
+
 		};
 		
 		delegate = cbc;
@@ -81,10 +80,7 @@ public class Application {
 	public void update(float delta) {
 		for (GameObject go : gObjects) {
 			go.updateWorld(delta);
-			
-			if (go != null) {
-				checkCollisions(go);
-			}
+			checkCollisions(go);
 		}
 	}
 	

@@ -4,10 +4,8 @@ import javagames.game.structs.Index2D;
 
 public final class Pawn extends Chessman {
 
-    private int direction;
-
-    public Pawn(int direction) {
-        this.direction = direction;
+    public Pawn() {
+        super("pawn");
     }
 
     /**
@@ -16,6 +14,7 @@ public final class Pawn extends Chessman {
      */
     @Override
     public Index2D[] moveablePositions() {
+        int direction = getColor() == Color.White ? 1 : -1;
         return new Index2D[] {
             Index2D.mul(direction, Index2D.leftUp),
             Index2D.mul(direction, Index2D.rightUp)

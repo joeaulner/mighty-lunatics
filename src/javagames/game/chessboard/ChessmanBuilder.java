@@ -8,10 +8,10 @@ import javagames.engine.SpriteObject;
 public class ChessmanBuilder {
 	private static Chessman[] pieces;
 	
-	private static Chessman queen = new Queen();
+	private static Chessman queen = new Queen("queen");
 	private static Chessman king = new King();
 	
-	public static SpriteObject createNormalPiece() {
+	public static Chessman createNormalPiece() {
         if (pieces != null) {
             Random random = new Random();
             return instantiate(pieces[random.nextInt(pieces.length-1)].getClass());

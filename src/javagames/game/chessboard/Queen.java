@@ -4,6 +4,10 @@ import javagames.game.structs.Index2D;
 
 public final class Queen extends Chessman {
 
+    public Queen() {
+        super("queen");
+    }
+
     /**
      * @see Chessman#moveablePositions()
      * @return An array of potential movement Positions (2D).

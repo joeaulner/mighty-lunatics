@@ -1,7 +1,5 @@
 package javagames.game.chessboard;
 
-import java.awt.Color;
-
 import javagames.engine.model.Vector2f;
 import javagames.game.structs.Index2D;
 import javagames.engine.SpriteObject;
@@ -10,6 +8,15 @@ public abstract class Chessman extends SpriteObject {
 	private Color color;
 	private boolean shouldMove = false;
 	private Vector2f targetPosition = null;
+	private String name;
+
+	public Chessman(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
 
 	public void moveTo(Vector2f position) {
 		this.targetPosition = new Vector2f(position.x, position.y);

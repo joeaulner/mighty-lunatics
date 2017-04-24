@@ -4,6 +4,10 @@ import javagames.game.structs.Index2D;
 
 public final class Bishop extends Chessman {
 
+    public Bishop() {
+        super("bishop");
+    }
+
     /**
      * @see Chessman#moveablePositions()
      * @return An array of potential movement Positions (2D).
