@@ -5,7 +5,7 @@ import javagames.game.structs.Index2D;
 public final class Queen extends Chessman {
 
     public Queen() {
-        super("queen");
+        super("WhiteQueen");
     }
 
     /**

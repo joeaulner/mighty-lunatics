@@ -1,14 +1,19 @@
 package javagames.game.chessboard;
 
 import javagames.engine.SpriteObject;
+import javagames.engine.model.Vector2f;
 import javagames.game.structs.Index2D;
 import javagames.game.util.Notification;
 import javagames.game.util.Notifier;
 
 public class Tile extends SpriteObject implements Selectable {
-
 	private Chessman piece;
 	private Index2D index;
+	
+	public Tile(float x, float y, int index_x, int index_y) {
+		getTransform().setPosition(new Vector2f(x, y));
+		this.index = new Index2D(index_x, index_y);
+	}
 	
     public Chessman getPiece() {
     	return this.piece;

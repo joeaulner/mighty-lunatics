@@ -3,9 +3,8 @@ package javagames.game.chessboard;
 import javagames.game.structs.Index2D;
 
 public final class Pawn extends Chessman {
-
-    public Pawn() {
-        super("pawn");
+    public Pawn(String string) {
+    	super(string);
     }
 
     /**

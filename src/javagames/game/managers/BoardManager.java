@@ -17,10 +17,11 @@ public class BoardManager implements NotificationDelegate {
     private static BoardManager instance;
 
     public static BoardManager getInstance(Board board) {
-        if (instance != null) {
-            return instance;
+        if (instance == null) {
+        	instance = new BoardManager(board);
         }
-        return (instance = new BoardManager(board));
+        
+        return instance;
     }
 
     public BoardManager(Board board) {
@@ -28,7 +29,10 @@ public class BoardManager implements NotificationDelegate {
         Notifier.registerObserver(Notification.Tile_Is_Empty, this);
         Notifier.registerObserver(Notification.Tile_Is_Selected, this);
         Notifier.registerObserver(Notification.Tile_Stopped_Chessman, this);
-        board.populateBoard();
+        
+        if (board != null) {
+        	board.populateBoard();
+        }
     }
     
 	@Override
@@ -124,6 +128,7 @@ public class BoardManager implements NotificationDelegate {
             board.swapTiles(lowerTile, higherTile);
             lowerTile = higherTile;
         }
+        
         createPieceForTile(board.getTile(column, 8), null);
     }
 

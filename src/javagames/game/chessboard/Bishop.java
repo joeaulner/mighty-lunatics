@@ -4,8 +4,8 @@ import javagames.game.structs.Index2D;
 
 public final class Bishop extends Chessman {
 
-    public Bishop() {
-        super("bishop");
+    public Bishop(String name) {
+        super(name);
     }
 
     /**

@@ -3,8 +3,8 @@ import javagames.game.structs.Index2D;
 
 public final class Knight extends Chessman {
 
-    public Knight() {
-        super("knight");
+    public Knight(String string) {
+        super(string);
     }
 
     /**

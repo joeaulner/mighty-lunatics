@@ -12,6 +12,16 @@ public abstract class Chessman extends SpriteObject {
 
 	public Chessman(String name) {
 		this.name = name;
+		
+		if (name.contains("black")) {
+			setColor(Color.Black);
+		} else if (name.contains("black")) {
+			setColor(Color.White);
+		}
+		
+		if (name != null) {
+			loadFile(getClass().getResource(name+".png").getPath());
+		}
 	}
 
 	public String getName() {

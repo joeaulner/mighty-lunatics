@@ -4,8 +4,8 @@ import javagames.game.structs.Index2D;
 
 public final class Rook extends Chessman {
 
-    public Rook() {
-        super("rook");
+    public Rook(String string) {
+        super(string);
     }
 
     /**

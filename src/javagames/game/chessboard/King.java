@@ -4,7 +4,7 @@ import javagames.game.structs.Index2D;
 public final class King extends Chessman {
 
     public King() {
-        super("king");
+        super("WhiteKing");
     }
 
     /**

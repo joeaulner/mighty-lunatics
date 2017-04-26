@@ -11,6 +11,8 @@ import javagames.engine.interfaces.InputListener;
 import javagames.engine.util.CollisionChecker;
 import javagames.game.CursorObject;
 import javagames.game.EndOnEscapeKey;
+import javagames.game.chessboard.Board;
+import javagames.game.managers.BoardManager;
 
 public class Application {
 	private static volatile boolean isRunning = true;
@@ -29,7 +31,11 @@ public class Application {
 			new EndOnEscapeKey()
 		};
 		
+		Board board = new Board();
+		BoardManager.getInstance(board);
+		
 		gObjects = new GameObject[] {
+			board,
 			new CursorObject()
 		};
 		

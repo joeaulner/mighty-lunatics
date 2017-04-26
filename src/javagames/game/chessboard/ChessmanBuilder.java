@@ -4,7 +4,16 @@ import java.lang.reflect.Constructor;
 import java.util.Random;
 
 public class ChessmanBuilder {
-	private static Chessman[] pieces;
+	private static Chessman[] pieces = new Chessman[] {
+			new Pawn("BlackPawn"),
+			new Pawn("WhitePawn"),
+			new Bishop("BlackBishop"),
+			new Bishop("WhiteBishop"),
+			new Knight("BlackKnight"),
+			new Knight("WhiteKnight"),
+			new Rook("BlackRook"),
+			new Rook("WhiteRook")
+	};
 	
 	private static Chessman queen = new Queen();
 	private static Chessman king = new King();
@@ -12,7 +21,8 @@ public class ChessmanBuilder {
 	public static Chessman createNormalPiece() {
         if (pieces != null) {
             Random random = new Random();
-            return instantiate(pieces[random.nextInt(pieces.length-1)].getClass());
+            System.out.println(pieces[random.nextInt(pieces.length-1)].getName());
+            return instantiate(pieces[random.nextInt(pieces.length-1)]);
         }
 
         return null;
@@ -20,7 +30,7 @@ public class ChessmanBuilder {
 
 	public static Chessman createKingPiece() {
 		if (king != null) {
-			return instantiate(king.getClass());
+			return instantiate(king);
 		}
 		
 		return null;
@@ -28,17 +38,17 @@ public class ChessmanBuilder {
 	
 	public static Chessman createQueenPiece() {
 		if (queen != null) {
-			return instantiate(queen.getClass());
+			return instantiate(queen);
 		}
 		
 		return null;
 	}
 	
-	private static Chessman instantiate(Class<? extends Chessman> classType) {
+	private static Chessman instantiate(Chessman piece) {
 		try {
-			Class<?> clazz = Class.forName(classType.getName());
+			Class<?> clazz = Class.forName(piece.getClass().getName());
 			Constructor<?> ctor = clazz.getConstructor(String.class);
-			Object object = ctor.newInstance();
+			Object object = ctor.newInstance(piece.getName());
 			return (Chessman)object;
 		} catch (Exception e) {
 			e.printStackTrace();

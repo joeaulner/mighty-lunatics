@@ -2,16 +2,15 @@ package javagames.engine;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import javagames.engine.components.CollisionComponent;
 import javagames.engine.interfaces.Collider;
 import javagames.engine.interfaces.IComponent;
-import javagames.engine.components.CollisionComponent;
 import javagames.engine.model.Matrix3x3f;
 import javagames.engine.model.Transform;
 import javagames.engine.model.Vector2f;
@@ -36,6 +35,7 @@ public class SpriteObject implements GameObject, Collider {
 
 	/** Draws Sprite with options drawing for colliders */
 	protected boolean show_colliders = false;
+	
 	@Override
 	public void render(Graphics g) {
 		g.setColor(color);
@@ -82,9 +82,9 @@ public class SpriteObject implements GameObject, Collider {
 			comp.processInput(delta);
 		}
 		
-		if (InputManager.getInputManager().keyDownOnce(KeyEvent.VK_B)) {
+		/*if (InputManager.getInputManager().keyDownOnce(KeyEvent.VK_B)) {
 			show_colliders = !show_colliders;
-		}
+		}*/
 	}
 
 	/**

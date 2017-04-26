@@ -46,7 +46,7 @@ public class CursorObject extends VectorObject {
 	@Override
 	public void processInput (float delta) {
 		dx = InputManager.getInputManager().getRelativePosition().x;
-		dy = -InputManager.getInputManager().getRelativePosition().y;
+		dy = InputManager.getInputManager().getRelativePosition().y;
 	}
 	
 	/**
