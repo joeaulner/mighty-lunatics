@@ -2,12 +2,13 @@ package javagames.game.chessboard;
 
 import javagames.engine.SpriteObject;
 import javagames.game.structs.Index2D;
+import javagames.game.util.Notification;
+import javagames.game.util.Notifier;
 
-public class Tile extends SpriteObject {
+public class Tile extends SpriteObject implements Selectable {
 
 	private Chessman piece;
 	private Index2D index;
-	
 	
     public Chessman getPiece() {
     	return this.piece;
@@ -31,10 +32,16 @@ public class Tile extends SpriteObject {
 		this.index = index;
 	}
 
+	public void Select(Tile tile) {
+        if (this.equals(tile)) {
+        	Notifier.notifyObservers(Notification.Tile_Is_Selected, this);
+        }
+    }
+	
 	public void clear() {
-//		Notifier.NotifyObservers(Notification.Chessman_Deleted, this.Piece);
+		Notifier.notifyObservers(Notification.Chessman_Deleted, this.getPiece());
 		this.piece = null;
-//		Notifier.NotifyObservers(Notification.Tile_Is_Empty, this);
+		Notifier.notifyObservers(Notification.Tile_Is_Empty, this);
 	}
 
 	@Override

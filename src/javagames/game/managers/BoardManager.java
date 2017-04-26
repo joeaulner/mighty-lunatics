@@ -1,9 +1,16 @@
-package javagames.game.chessboard;
+package javagames.game.managers;
 
 import javagames.engine.model.Vector2f;
+import javagames.game.chessboard.Board;
+import javagames.game.chessboard.Chessman;
+import javagames.game.chessboard.ChessmanBuilder;
+import javagames.game.chessboard.Tile;
 import javagames.game.structs.Index2D;
+import javagames.game.util.Notification;
+import javagames.game.util.NotificationDelegate;
+import javagames.game.util.Notifier;
 
-public class BoardManager {
+public class BoardManager implements NotificationDelegate {
     private Board board;
     private Tile selectedTile;
 
@@ -18,11 +25,22 @@ public class BoardManager {
 
     public BoardManager(Board board) {
         this.board = board;
-//        Notifier.RegisterObserver(Notification.Tile_Is_Empty, FillEmptyTile);
-//        Notifier.RegisterObserver(Notification.Tile_Is_Selected, SelectTile);
-//        Notifier.RegisterObserver(Notification.Tile_Stopped_Chessman, CheckTiles);
+        Notifier.registerObserver(Notification.Tile_Is_Empty, this);
+        Notifier.registerObserver(Notification.Tile_Is_Selected, this);
+        Notifier.registerObserver(Notification.Tile_Stopped_Chessman, this);
         board.populateBoard();
     }
+    
+	@Override
+	public void notificationMethod(Notification notification, Object sender) {
+		switch (notification) {
+			case Tile_Is_Empty: fillEmptyTile(sender); break;
+			case Tile_Is_Selected: selectTile(sender); break;
+			case Tile_Stopped_Chessman: checkTiles(sender); break;
+				
+			default: break;
+		}
+	}
 
     public void createPieceForTile(Tile tile, Chessman previous) {
         Chessman piece = ChessmanBuilder.createNormalPiece();
@@ -115,7 +133,7 @@ public class BoardManager {
             selectedTile = tile;
         } else if (selectedTile != tile && isValidMove(selectedTile, tile.getIndex())) {
             board.swapTiles(selectedTile, tile);
-//            Notifier.NotifyObservers(Notification.Player_Did_Move, this);
+            Notifier.notifyObservers(Notification.Player_Did_Move, this);
             selectedTile = null;
         } else {
             selectedTile = null;

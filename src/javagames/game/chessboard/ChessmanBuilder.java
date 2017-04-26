@@ -3,12 +3,10 @@ package javagames.game.chessboard;
 import java.lang.reflect.Constructor;
 import java.util.Random;
 
-import javagames.engine.SpriteObject;
-
 public class ChessmanBuilder {
 	private static Chessman[] pieces;
 	
-	private static Chessman queen = new Queen("queen");
+	private static Chessman queen = new Queen();
 	private static Chessman king = new King();
 	
 	public static Chessman createNormalPiece() {
@@ -43,7 +41,6 @@ public class ChessmanBuilder {
 			Object object = ctor.newInstance();
 			return (Chessman)object;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

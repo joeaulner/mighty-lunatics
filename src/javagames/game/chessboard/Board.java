@@ -1,5 +1,6 @@
 package javagames.game.chessboard;
 
+import javagames.game.managers.BoardManager;
 import javagames.game.structs.Index2D;
 
 public class Board {
