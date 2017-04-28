@@ -2,11 +2,13 @@ package javagames.game;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
 
 import javagames.engine.InputManager;
 import javagames.engine.VectorObject;
 import javagames.engine.model.Vector2f;
 import javagames.engine.util.Screen;
+import javagames.game.managers.BoardManager;
 
 public class CursorObject extends VectorObject {
 	private final int HEIGHT	= 10;
@@ -47,6 +49,10 @@ public class CursorObject extends VectorObject {
 	public void processInput (float delta) {
 		dx = InputManager.getInputManager().getRelativePosition().x;
 		dy = InputManager.getInputManager().getRelativePosition().y;
+		
+		if (InputManager.getInputManager().buttonDownOnce(MouseEvent.BUTTON1)) {
+			BoardManager.getInstance().mouseClickAt(getTransform().getPosition());
+		}
 	}
 	
 	/**

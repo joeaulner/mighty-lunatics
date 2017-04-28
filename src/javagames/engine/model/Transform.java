@@ -86,7 +86,7 @@ public class Transform {
 		mat = mat.mul(Matrix3x3f.scale(scale));
 		mat = mat.mul(Matrix3x3f.rotate(this.rotation/* + 3.1415f*/));
 		mat = mat.mul(Matrix3x3f.translate(this.position));
-		//mat = mat.mul(World.getWorldToScreenMatrix());
+//		mat = mat.mul(World.getWorldToScreenMatrix());
 		
 		return mat;
 	}

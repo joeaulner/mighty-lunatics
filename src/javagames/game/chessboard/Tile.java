@@ -1,6 +1,10 @@
 package javagames.game.chessboard;
 
+import java.awt.Graphics;
+
 import javagames.engine.SpriteObject;
+import javagames.engine.components.Component;
+import javagames.engine.components.RectCollisionComponent;
 import javagames.engine.model.Vector2f;
 import javagames.game.structs.Index2D;
 import javagames.game.util.Notification;
@@ -12,7 +16,18 @@ public class Tile extends SpriteObject implements Selectable {
 	
 	public Tile(float x, float y, int index_x, int index_y) {
 		getTransform().setPosition(new Vector2f(x, y));
+		
+		//System.out.println("TEST:" + x + ", " + y);
 		this.index = new Index2D(index_x, index_y);
+		
+		this.comps = new Component[] {
+			new RectCollisionComponent(this, new Vector2f[] {
+				new Vector2f(-25, 25),
+				new Vector2f(25, 25),
+				new Vector2f(25, -25),
+				new Vector2f(-25, -25)
+			})
+		};
 	}
 	
     public Chessman getPiece() {
@@ -37,7 +52,7 @@ public class Tile extends SpriteObject implements Selectable {
 		this.index = index;
 	}
 
-	public void Select(Tile tile) {
+	public void select(Tile tile) {
         if (this.equals(tile)) {
         	Notifier.notifyObservers(Notification.Tile_Is_Selected, this);
         }
@@ -52,21 +67,32 @@ public class Tile extends SpriteObject implements Selectable {
 	@Override
     public void updateWorld(float delta) {
     	super.updateWorld(delta);
+    	this.piece.updateWorld(delta);
     	
     	if (inProximity()) {
     		this.piece.stopMoving();
+        	Notifier.notifyObservers(Notification.Tile_Stopped_Chessman, this);
     	}
     }
+	
+	@Override
+	public void render(Graphics g) {
+		super.render(g);
+		
+		if (this.piece != null) {
+			this.piece.render(g);
+		}
+	}
 
 	private boolean inProximity() {
 		if (this.piece == null) {
 			return false;
 		}
 		
-		float x = this.piece.getTransform().getPosition().x = this.getTransform().getPosition().x;
-		float y = this.piece.getTransform().getPosition().y = this.getTransform().getPosition().y;
+		float x = this.piece.getTransform().getPosition().x - this.getTransform().getPosition().x;
+		float y = this.piece.getTransform().getPosition().y - this.getTransform().getPosition().y;
 		float distance = x*x + y*y;
 		
-		return (distance < 2);
+		return (distance < 0.025);
 	}
 }

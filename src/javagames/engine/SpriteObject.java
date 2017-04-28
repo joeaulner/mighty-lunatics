@@ -2,6 +2,9 @@ package javagames.engine;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -42,13 +45,7 @@ public class SpriteObject implements GameObject, Collider {
 		
 		// Draw Sprite
 		if (sprite != null) {
-			Vector2f v1 = new Vector2f(-1*sprite.getWidth()/2, -1*sprite.getHeight()/2);
-			Vector2f v2 = new Vector2f(sprite.getWidth()/2, sprite.getHeight()/2);
-			
-			v1 = matrix.mul(v1);
-			v2 = matrix.mul(v2);
-			
-			g.drawImage(sprite, (int)v1.x, (int)v1.y, (int)v2.x, (int)v2.y, 0, 0, sprite.getWidth(), sprite.getHeight(), null);
+			doAffineTransform((Graphics2D) g);
 		}
 		
 		// Draw Collider
@@ -63,6 +60,22 @@ public class SpriteObject implements GameObject, Collider {
 				}
 			}
 		}
+	}
+	
+	private AffineTransform createTransform(Vector2f position, float angle) {
+		AffineTransform transform = AffineTransform.getTranslateInstance(position.x, position.y);
+		transform.rotate(angle);
+		transform.scale(getTransform().getScale().x, getTransform().getScale().y);
+		transform.translate(-sprite.getWidth() / 2, -sprite.getHeight() / 2);
+		return transform;
+	}
+	
+	/**
+	 *	Test given code 
+	 */
+	private void doAffineTransform(Graphics2D g2d) {
+		AffineTransform tranform = createTransform(getTransform().getPosition(), getTransform().getRotation());
+		g2d.drawImage(sprite, tranform, null);
 	}
 	
 	/** A method specific for drawing the translated points of a polygon */
@@ -82,9 +95,10 @@ public class SpriteObject implements GameObject, Collider {
 			comp.processInput(delta);
 		}
 		
-		/*if (InputManager.getInputManager().keyDownOnce(KeyEvent.VK_B)) {
+		if (InputManager.getInputManager().keyDownOnce(KeyEvent.VK_B)) {
+			System.out.println("Colliders Switched");
 			show_colliders = !show_colliders;
-		}*/
+		}
 	}
 
 	/**

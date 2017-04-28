@@ -1,5 +1,7 @@
 package javagames.game.chessboard;
 
+import java.awt.Graphics;
+
 import javagames.engine.SpriteObject;
 import javagames.engine.util.Screen;
 import javagames.game.managers.BoardManager;
@@ -11,11 +13,11 @@ public class Board extends SpriteObject {
 
     public Board() {
     	board = new Tile[64];
-    	
+    	int x_offset = 100;
+    	int y_offset = 100;
     	for (int x = 0; x < 8; x++) {
     		for (int y = 0; y < 8; y++) {
-    			board[8*x + y] = new Tile(x*Screen.width/8, y*Screen.width/8, x, y);
-    			System.out.println(x*Screen.width/8 + ", " + y*Screen.width/8);
+    			board[8*x + y] = new Tile(x*(Screen.width - x_offset)/8 + x_offset, y*(Screen.height - y_offset)/8 + y_offset, x + 1, y + 1);
     		}
     	}
     }
@@ -29,6 +31,15 @@ public class Board extends SpriteObject {
     	}
     }
     
+    @Override
+    public void render(Graphics g) {
+    	super.render(g);
+    	
+    	for (Tile tile : board) {
+    		tile.render(g);
+    	}
+    }
+    
     public void swapTiles(Tile initTile, Tile finalTile) {
         Chessman piece = finalTile.getPiece();
         finalTile.setPiece(initTile.getPiece());
@@ -37,9 +48,8 @@ public class Board extends SpriteObject {
 
     public void populateBoard() {
         Chessman previous = null;
-        
         for (Tile tile : board) {
-            BoardManager.getInstance(null).createPieceForTile(tile, previous);
+            BoardManager.getInstance().createPieceForTile(tile, previous);
             previous = tile.getPiece();
         }
     }

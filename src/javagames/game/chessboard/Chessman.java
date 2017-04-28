@@ -1,8 +1,10 @@
 package javagames.game.chessboard;
 
+import java.awt.Graphics;
+
+import javagames.engine.SpriteObject;
 import javagames.engine.model.Vector2f;
 import javagames.game.structs.Index2D;
-import javagames.engine.SpriteObject;
 
 public abstract class Chessman extends SpriteObject {
 	private Color color;
@@ -13,14 +15,18 @@ public abstract class Chessman extends SpriteObject {
 	public Chessman(String name) {
 		this.name = name;
 		
-		if (name.contains("black")) {
+		if (name.contains("Black")) {
 			setColor(Color.Black);
-		} else if (name.contains("black")) {
+		} else if (name.contains("White")) {
 			setColor(Color.White);
 		}
 		
+
+		getTransform().setScale(new Vector2f(0.25f, 0.25f));
+		
 		if (name != null) {
-			loadFile(getClass().getResource(name+".png").getPath());
+			loadFile("imgs/" + name + ".png");
+			sprite = spritesheet;
 		}
 	}
 
@@ -45,9 +51,19 @@ public abstract class Chessman extends SpriteObject {
 			float xPosition = this.targetPosition.x - this.getTransform().getPosition().x;
 			float yPosition = this.targetPosition.y - this.getTransform().getPosition().y;
 			
-			Vector2f direction = new Vector2f(xPosition, yPosition, 0f);
+			Vector2f direction = new Vector2f(xPosition, yPosition);
 			
-			this.getTransform().translate(direction.mul(0.15f));
+			this.getTransform().translate(direction.mul(0.05f));
+		}
+	}
+	
+	@Override
+	public void render(Graphics g) {
+		super.render(g);
+		
+		if (sprite != null) {
+//			System.out.println("TEST CHESSMAN");
+//			System.out.println(getTransform().getPosition().x + ", " + getTransform().getPosition().y);
 		}
 	}
 	

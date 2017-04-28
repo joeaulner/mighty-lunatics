@@ -21,8 +21,9 @@ public class ChessmanBuilder {
 	public static Chessman createNormalPiece() {
         if (pieces != null) {
             Random random = new Random();
-            System.out.println(pieces[random.nextInt(pieces.length-1)].getName());
-            return instantiate(pieces[random.nextInt(pieces.length-1)]);
+            Chessman obj = pieces[random.nextInt(pieces.length-1)];
+            System.out.println(obj.getName());
+            return instantiate(obj);
         }
 
         return null;

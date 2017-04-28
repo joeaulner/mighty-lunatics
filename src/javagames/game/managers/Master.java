@@ -18,9 +18,9 @@ public class Master implements NotificationDelegate {
 	@Override
 	public void notificationMethod(Notification notification, Object sender) {
 		switch (notification) {
-			case Tile_Is_Empty: decrementMoveCount(sender); break;
-			case Tile_Is_Selected: updateScore(sender); break;
-			case Tile_Stopped_Chessman: endLevel(sender); break;
+			case Player_Did_Move: decrementMoveCount(sender); break;
+			case Chessman_Deleted: updateScore(sender); break;
+			case Level_Ended: endLevel(sender); break;
 				
 			default: break;
 		}
