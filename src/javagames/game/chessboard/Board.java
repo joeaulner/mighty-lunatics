@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import javagames.engine.SpriteObject;
 import javagames.engine.util.Screen;
 import javagames.game.managers.BoardManager;
+import javagames.game.sound.Sound;
 import javagames.game.structs.Index2D;
 
 public class Board extends SpriteObject {
@@ -20,6 +21,9 @@ public class Board extends SpriteObject {
     			board[8*x + y] = new Tile(x*(Screen.width - x_offset)/8 + x_offset, y*(Screen.height - y_offset)/8 + y_offset, x + 1, y + 1);
     		}
     	}
+    	
+    	Sound sound = new Sound("test.wav");
+    	sound.playSound(true);
     }
     
     @Override
