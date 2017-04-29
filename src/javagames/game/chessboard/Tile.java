@@ -16,6 +16,7 @@ public class Tile extends SpriteObject implements Selectable {
 	
 	public Tile(float x, float y, int index_x, int index_y) {
 		getTransform().setPosition(new Vector2f(x, y));
+		getTransform().setScale(new Vector2f(0.70f, 0.70f));
 		
 		//System.out.println("TEST:" + x + ", " + y);
 		this.index = new Index2D(index_x, index_y);
@@ -28,6 +29,15 @@ public class Tile extends SpriteObject implements Selectable {
 				new Vector2f(-25, -25)
 			})
 		};
+		
+		int column_offset = ((index_x-1) % 2 == 0) ? 0 : 1;
+		if ((index_y-1) % 2 == column_offset) {
+			loadFile("imgs/BlackTile.png");
+		} else {
+			loadFile("imgs/WhiteTile.png");
+		}
+		
+		sprite = spritesheet;
 	}
 	
     public Chessman getPiece() {
@@ -79,9 +89,9 @@ public class Tile extends SpriteObject implements Selectable {
 	public void render(Graphics g) {
 		super.render(g);
 		
-		if (this.piece != null) {
+		/*if (this.piece != null) {
 			this.piece.render(g);
-		}
+		}*/
 	}
 
 	private boolean inProximity() {

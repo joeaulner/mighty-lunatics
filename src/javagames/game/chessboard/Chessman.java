@@ -22,10 +22,10 @@ public abstract class Chessman extends SpriteObject {
 		}
 		
 
-		getTransform().setScale(new Vector2f(0.25f, 0.25f));
+		getTransform().setScale(new Vector2f(0.2f, 0.2f));
 		
 		if (name != null) {
-			loadFile("imgs/" + name + ".png");
+			loadFile("imgs/chesspieces/" + name + ".png");
 			sprite = spritesheet;
 		}
 	}
