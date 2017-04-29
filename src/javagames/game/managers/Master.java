@@ -1,6 +1,6 @@
 package javagames.game.managers;
 
-import javagames.Application;
+import javagames.Level;
 import javagames.game.chessboard.Chessman;
 import javagames.game.util.Notification;
 import javagames.game.util.NotificationDelegate;
@@ -36,6 +36,6 @@ public class Master implements NotificationDelegate {
 
     private void endLevel(Object sender) {
     	// TODO: Change to What we really want later
-    	Application.restart();
+    	Level.restart();
     }
 }

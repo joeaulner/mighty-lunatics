@@ -10,7 +10,7 @@ import javagames.engine.util.SimpleFramework;
 public class Main extends SimpleFramework  {
 	private static final long serialVersionUID = -2945372375316935538L;
 	
-	Application app;
+	Level app;
 	
 	/**
 	 * Setup the game for appropriate screen sizing
@@ -31,14 +31,14 @@ public class Main extends SimpleFramework  {
 		appWorldWidth = Screen.width;
 		appWorldHeight = Screen.height;
 		
-		app = new Application(this);
+		app = new GameplayLevel(this);
 	}
 	
 	/**
 	 * Reset Application for running in the world
 	 */
 	public void restart() {
-		app = new Application(this);
+		app = new GameplayLevel(this);
 	}
 
 	@Override

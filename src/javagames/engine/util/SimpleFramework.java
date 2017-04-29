@@ -18,7 +18,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import javagames.Application;
+import javagames.Level;
 import javagames.engine.InputManager;
 import javagames.engine.model.Matrix3x3f;
 import javagames.engine.model.Vector2f;
@@ -142,7 +142,7 @@ public class SimpleFramework extends JFrame implements Runnable {
 	}
 
 	public void run() {
-		Application.setRunning(true);
+		Level.setRunning(true);
 		initialize();
 
 		// Create a new blank cursor.		
@@ -155,7 +155,7 @@ public class SimpleFramework extends JFrame implements Runnable {
 		long curTime = System.nanoTime();
 		long lastTime = curTime;
 		double nsPerFrame;
-		while (Application.isRunning()) {
+		while (Level.isRunning()) {
 			curTime = System.nanoTime();
 			nsPerFrame = curTime - lastTime;
 			gameLoop((float) (nsPerFrame / 1.0E9));
@@ -222,7 +222,7 @@ public class SimpleFramework extends JFrame implements Runnable {
 	}
 
 	protected void onWindowClosing() {
-		Application.setRunning(false);
+		Level.setRunning(false);
 		this.dispose();
 		System.exit(0);
 	}

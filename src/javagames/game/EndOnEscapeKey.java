@@ -2,7 +2,7 @@ package javagames.game;
 
 import java.awt.event.KeyEvent;
 
-import javagames.Application;
+import javagames.Level;
 import javagames.engine.InputManager;
 import javagames.engine.interfaces.InputListener;
 
@@ -16,7 +16,7 @@ public class EndOnEscapeKey implements InputListener {
 	@Override
 	public void processInput(float delta) {
 		if (InputManager.getInputManager().keyDownOnce(KeyEvent.VK_ESCAPE)) {
-			Application.setRunning(false);
+			Level.setRunning(false);
 		}
 	}
 }
