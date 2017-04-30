@@ -5,7 +5,7 @@ import javagames.game.util.Notifier;
 
 public class PlayerData {
 	private int score = 0;              // The player's current score.
-    private int remainingMoves = 1;    // The player's remaining moves.
+    private int remainingMoves = 20;    // The player's remaining moves.
 	public int getScore() {
 		return score;
 	}
