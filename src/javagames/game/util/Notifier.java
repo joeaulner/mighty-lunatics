@@ -45,7 +45,7 @@ public class Notifier {
         }
     }
 	
-	public static void ClearRegisteredObservers() {
+	public static void clearRegisteredObservers() {
         map.clear();
     }
 }

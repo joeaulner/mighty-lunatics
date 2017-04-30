@@ -24,14 +24,28 @@ public class BoardManager extends SpriteObject implements NotificationDelegate {
 
     public static BoardManager getInstance() {
         if (instance == null) {
-        	instance = new BoardManager(new Board());
-        	
-        	if (instance.board != null) {
-        		instance.board.populateBoard();
-            }
+        	instance = resetInstance();
         }
         
         return instance;
+    }
+    
+    public static BoardManager resetInstance() {
+    	instance = new BoardManager(new Board());
+
+    	if (instance.board != null) {
+    		instance.board.populateBoard();
+        }
+    	
+    	return instance;
+    }
+    
+    public static void clearInstance() {
+    	instance.board = null;
+    	
+    	if (instance.board != null) {
+    		instance.board.populateBoard();
+        }
     }
 
     public BoardManager(Board board) {
@@ -44,33 +58,40 @@ public class BoardManager extends SpriteObject implements NotificationDelegate {
     @Override
     public void updateWorld(float delta) {
     	super.updateWorld(delta);
-    	this.board.updateWorld(delta);
+    	
+    	if (this.board != null) {
+    		this.board.updateWorld(delta);
+    	}
     }
     
     @Override
     public void render(Graphics g) {
     	super.render(g);
-    	this.board.render(g);
+    	
+    	if (this.board != null) {
+    		this.board.render(g);
+    	}
     }
     
     public void mouseClickAt(Vector2f position) {
-    	System.out.print("Click at Position(" + position.x + ", " + position.y + "): ");
-    	for (int x = 1; x <= 8; x++) {
-    		for (int y = 1; y <= 8; y++) {
-    			Tile tile = board.getTile(x, y);
-    			CollisionComponent cc = tile.getCollisionComponent();
-    			
-    			if (cc != null) {
-    				if (pointInPolygon( position, Arrays.asList(cc.getCollisionPoints()), false) ) {
-    					System.out.println("Success");
-    					tile.select(tile);
-    					return;
-    				}
-    			}
-    		}
+//    	System.out.print("Click at Position(" + position.x + ", " + position.y + "): ");
+    	if (this.board != null) {
+	    	for (int x = 1; x <= 8; x++) {
+	    		for (int y = 1; y <= 8; y++) {
+	    			Tile tile = board.getTile(x, y);
+	    			CollisionComponent cc = tile.getCollisionComponent();
+	    			
+	    			if (cc != null) {
+	    				if (pointInPolygon( position, Arrays.asList(cc.getCollisionPoints()), false) ) {
+//	    					System.out.println("Success");
+	    					tile.select(tile);
+	    					return;
+	    				}
+	    			}
+	    		}
+	    	}
     	}
-    	
-    	System.out.println("Failed");
+//    	System.out.println("Failed");
     }
     
 	@Override
@@ -101,46 +122,48 @@ public class BoardManager extends SpriteObject implements NotificationDelegate {
     }
 
     public void checkTiles(Object sender) {
-        Tile tile = (Tile)sender;
-        String name = tile.getPiece().getName();
-
-        for (int i = 0; i < 2; i++)
-        {
-            int matchCombo = 0;
-            Tile[] tiles = new Tile[8];
-
-            for (int j = 1; j <= 8; j++)
-            {
-                Tile tempTile;
-
-                if (i == 0)
-                {   tempTile = this.board.getTile(tile.getIndex().x, j);    }
-                else
-                {   tempTile = this.board.getTile(j, tile.getIndex().y);    }
-
-                if (tempTile != null)
-                {
-                    if (tempTile.getPiece() != null)
-                    {
-                        if (name.equals(tempTile.getPiece().getName()))
-                        {
-                            tiles[matchCombo] = tempTile;
-                            matchCombo += 1;
-                        }
-                        else if (matchCombo >= 3)
-                        {   break;  }
-                        else
-                        {   matchCombo = 0; }
-                    } else
-                    {   matchCombo = 0; }
-                }
-            }
-
-            if (matchCombo > 2)
-            {
-                for (int j = 0; j < matchCombo; j++)
-                {   tiles[j].clear();   }
-            }
+        if (this.board != null) {
+	    	Tile tile = (Tile)sender;
+	        String name = tile.getPiece().getName();
+	
+	        for (int i = 0; i < 2; i++)
+	        {
+	            int matchCombo = 0;
+	            Tile[] tiles = new Tile[8];
+	
+	            for (int j = 1; j <= 8; j++)
+	            {
+	                Tile tempTile;
+	
+	                if (i == 0)
+	                {   tempTile = this.board.getTile(tile.getIndex().x, j);    }
+	                else
+	                {   tempTile = this.board.getTile(j, tile.getIndex().y);    }
+	
+	                if (tempTile != null)
+	                {
+	                    if (tempTile.getPiece() != null)
+	                    {
+	                        if (name.equals(tempTile.getPiece().getName()))
+	                        {
+	                            tiles[matchCombo] = tempTile;
+	                            matchCombo += 1;
+	                        }
+	                        else if (matchCombo >= 3)
+	                        {   break;  }
+	                        else
+	                        {   matchCombo = 0; }
+	                    } else
+	                    {   matchCombo = 0; }
+	                }
+	            }
+	
+	            if (matchCombo > 2)
+	            {
+	                for (int j = 0; j < matchCombo; j++)
+	                {   tiles[j].clear();   }
+	            }
+	        }
         }
     }
 
@@ -160,14 +183,17 @@ public class BoardManager extends SpriteObject implements NotificationDelegate {
     }
 
     private void refillColumn(int column, int startY) {
-        Tile lowerTile = board.getTile(column, startY);
-        for (int j = startY; j > 1; j--) {
-            Tile higherTile = board.getTile(column, j - 1);
-            board.swapTiles(lowerTile, higherTile);
-            lowerTile = higherTile;
+        if (this.board != null) {
+        	Tile lowerTile = board.getTile(column, startY);
+	        
+	        for (int j = startY; j > 1; j--) {
+	            Tile higherTile = board.getTile(column, j - 1);
+	            board.swapTiles(lowerTile, higherTile);
+	            lowerTile = higherTile;
+	        }
+	        
+	        createPieceForTile(board.getTile(column, 1), null);
         }
-        
-        createPieceForTile(board.getTile(column, 1), null);
     }
 
     private void selectTile(Object sender) {

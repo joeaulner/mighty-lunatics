@@ -13,7 +13,7 @@ public final class Pawn extends Chessman {
      */
     @Override
     public Index2D[] moveablePositions() {
-        int direction = getColor() == Color.White ? 1 : -1;
+        int direction = getColor() == Color.White ? -1 : 11;
         return new Index2D[] {
             Index2D.mul(direction, Index2D.leftUp),
             Index2D.mul(direction, Index2D.rightUp)

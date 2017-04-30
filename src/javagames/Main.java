@@ -27,7 +27,7 @@ public class Main extends SimpleFramework  {
 		
 		appMaintainRatio = true;
 		appSleep = 10L;
-		appTitle = "Sprites";
+		appTitle = "Chess Swap";
 		appWorldWidth = Screen.width;
 		appWorldHeight = Screen.height;
 		
