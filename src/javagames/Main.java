@@ -31,14 +31,18 @@ public class Main extends SimpleFramework  {
 		appWorldWidth = Screen.width;
 		appWorldHeight = Screen.height;
 		
-		loadGamePlayLevel(false);
+		loadMainMenu();
 	}
 	
 	/**
 	 * Reset Application for running in the world
 	 */
 	public void loadMainMenu() {
-		app = new GameplayLevel(this, "");
+		app = new MainMenu(this);
+	}
+	
+	public void loadStoryMenu() {
+		app = new StoryMenu(this);
 	}
 	
 	private int count = 0;
@@ -61,6 +65,10 @@ public class Main extends SimpleFramework  {
 			loadMainMenu();
 			count = 0;
 		}
+	}
+	
+	public void selectLevel(String competitor) {
+		app = new GameplayLevel(this, competitor);
 	}
 
 	@Override

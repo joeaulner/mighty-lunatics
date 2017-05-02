@@ -43,12 +43,20 @@ public class Level {
 		delegate.loadMainMenu();
 	}
 	
+	public static void loadStoryMenu() {
+		delegate.loadStoryMenu();
+	}
+	
 	public static void reloadLevel() {
 		delegate.loadGamePlayLevel(false);
 	}
 	
 	public static void loadNextLevel() {
 		delegate.loadGamePlayLevel(true);
+	}
+	
+	public static void selectLevel(String competitor) {
+		delegate.selectLevel(competitor);
 	}
 	
 	float timeDelay = 0;
