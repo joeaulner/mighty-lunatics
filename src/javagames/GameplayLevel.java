@@ -2,6 +2,7 @@ package javagames;
 
 import javagames.engine.GameObject;
 import javagames.engine.interfaces.InputListener;
+import javagames.game.ChallengerSprite;
 import javagames.game.CursorObject;
 import javagames.game.EndOnEscapeKey;
 import javagames.game.GameplayBackgroundSprite;
@@ -13,7 +14,7 @@ import javagames.game.util.Notifier;
 
 public class GameplayLevel extends Level {
 
-	public GameplayLevel(Main main) {
+	public GameplayLevel(Main main, String competitor) {
 		super(main);
 		
 		Notifier.clearRegisteredObservers();
@@ -22,13 +23,25 @@ public class GameplayLevel extends Level {
 			new EndOnEscapeKey()
 		};
 		
-		gObjects = new GameObject[] {
-			new GameplayBackgroundSprite(),
-			new GameplayTitleLogo(),
-			BoardManager.resetInstance(),
-			new CursorObject(),
-			new Master(),
-			new UIManager()
-		};
+		if (!competitor.trim().isEmpty()) {
+			gObjects = new GameObject[] {
+				new GameplayBackgroundSprite(),
+				new GameplayTitleLogo(),
+				new ChallengerSprite(competitor),
+				BoardManager.resetInstance(),
+				new CursorObject(),
+				new Master(),
+				new UIManager()
+			};
+		} else {
+			gObjects = new GameObject[] {
+				new GameplayBackgroundSprite(),
+				new GameplayTitleLogo(),
+				BoardManager.resetInstance(),
+				new CursorObject(),
+				new Master(),
+				new UIManager()
+			};
+		}
 	}
 }

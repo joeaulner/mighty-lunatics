@@ -36,7 +36,7 @@ public class CursorObject extends VectorObject {
 
 		getTransform().setPosition(new Vector2f(Screen.width / 2, Screen.height / 2));
 		getTransform().setScale(new Vector2f(1, 1));
-		setColor(Color.GREEN);	
+		setColor(Color.RED);	
 	}
 	
 	/**

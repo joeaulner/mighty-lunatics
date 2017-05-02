@@ -39,8 +39,16 @@ public class Level {
 		isRunning = running;
 	}
 	
-	public static void restart() {
-		delegate.restart();
+	public static void loadMainMenu() {
+		delegate.loadMainMenu();
+	}
+	
+	public static void reloadLevel() {
+		delegate.loadGamePlayLevel(false);
+	}
+	
+	public static void loadNextLevel() {
+		delegate.loadGamePlayLevel(true);
 	}
 	
 	float timeDelay = 0;
@@ -68,38 +76,7 @@ public class Level {
 	public void update(float delta) {
 		for (GameObject go : gObjects) {
 			go.updateWorld(delta);
-			
-			if (go != null) {
-				checkCollisions(go);
-			}
 		}
-	}
-	
-	private void checkCollisions(GameObject go) {
-		/*for (GameObject gOther : gObjects) {
-			if (go instanceof Collider) {
-				Collider c1 = ((Collider)go);
-				CollisionComponent cc1 = c1.getCollisionComponent();
-				
-				if (cc1 != null) {
-				if (go != gOther && gOther instanceof Collider) {
-					Collider c2 = ((Collider)gOther);
-					CollisionComponent cc2 = c2.getCollisionComponent();
-					if (cc2 != null) {
-					if (CollisionChecker.rectRectIntersection(cc1.getCollisionPoints(), cc2.getCollisionPoints())) {
-						for (CollisionComponent colComp1 : cc1.getInnerColliders()) {
-							if (CollisionChecker.rectRectIntersection(colComp1.getCollisionPoints(), cc2.getCollisionPoints())) {
-								c1.collisionWith(gOther);
-								c2.collisionWith(go);
-								break;
-							}
-						}
-					}
-					}
-				}
-				}
-			}
-		}*/
 	}
 
 	/**

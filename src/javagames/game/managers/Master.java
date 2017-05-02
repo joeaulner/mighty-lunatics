@@ -1,5 +1,6 @@
 package javagames.game.managers;
 
+import java.awt.Font;
 import java.awt.Graphics;
 
 import com.sun.glass.events.KeyEvent;
@@ -43,29 +44,41 @@ public class Master implements NotificationDelegate, GameObject {
     }
 
     
-    boolean readyToRestart = false;
+    boolean gameOver = false;
     private void endLevel(Object sender) {
     	BoardManager.clearInstance();
-    	readyToRestart = true;
-//    	Level.restart();
+    	gameOver = true;
     }
 
 	@Override
 	public void updateWorld(float delta) {
-		
+		// Nothing
 	}
 
 	@Override
 	public void render(Graphics g) {
-		if (readyToRestart) {
-			g.drawString("Press R To Restart the Level", Screen.width/2, Screen.height/2);
+		if (gameOver) {
+			g.setFont(new Font("Arial", Font.BOLD, 30));
+			
+			if (pData.getScore() >= 250) {
+				g.drawString("You Have Defeated Your Opponent", Screen.width/2 - 225, Screen.height/2 - 40);
+				g.drawString("Press Enter to Proceed", Screen.width/2 - 150, Screen.height/2 + 40);
+			} else {
+				g.drawString("You Have Lost", Screen.width/2 - 90, Screen.height/2 - 40);
+			}
+			
+			g.drawString("Press R To Replay the Level", Screen.width/2 - 190, Screen.height/2);
 		}
 	}
 
 	@Override
 	public void processInput(float delta) {
-		if (readyToRestart && InputManager.getInputManager().keyDownOnce(KeyEvent.VK_R)) {
-			Level.restart();
+		if (gameOver) {
+			if (InputManager.getInputManager().keyDownOnce(KeyEvent.VK_R)) {
+				Level.reloadLevel();
+			} else if (InputManager.getInputManager().keyDownOnce(KeyEvent.VK_ENTER)) {
+				Level.loadNextLevel();
+			}
 		}
 	}
 

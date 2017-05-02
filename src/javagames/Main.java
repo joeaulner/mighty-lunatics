@@ -31,14 +31,36 @@ public class Main extends SimpleFramework  {
 		appWorldWidth = Screen.width;
 		appWorldHeight = Screen.height;
 		
-		app = new GameplayLevel(this);
+		loadGamePlayLevel(false);
 	}
 	
 	/**
 	 * Reset Application for running in the world
 	 */
-	public void restart() {
-		app = new GameplayLevel(this);
+	public void loadMainMenu() {
+		app = new GameplayLevel(this, "");
+	}
+	
+	private int count = 0;
+	private final String[] array = new String[] {
+			"fabianocaruana",
+			"garykasparov",
+			"jeremysilman",
+			"juditpolgar",
+			"magnuscarlsen"
+	};
+	
+	public void loadGamePlayLevel(boolean next) {
+		if (next) {
+			count++;
+		}
+		
+		if (count < array.length) {
+			app = new GameplayLevel(this, array[count]);
+		} else {
+			loadMainMenu();
+			count = 0;
+		}
 	}
 
 	@Override

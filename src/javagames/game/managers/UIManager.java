@@ -40,7 +40,7 @@ public class UIManager implements NotificationDelegate, GameObject {
 	@Override
 	public void render(Graphics g) {
 		g.setFont(new Font("Arial", Font.BOLD, 30));
-		g.drawString("Score: " + score + "       Turns: " + remainingTurns, Screen.width/2 - 150, 150);
+		g.drawString(String.format("Score: %04d Turns: %02d", score, remainingTurns), Screen.width/2 - 100, 150);
 	}
 
 	@Override
