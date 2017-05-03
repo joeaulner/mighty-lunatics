@@ -14,7 +14,7 @@ public class Sound {
 	
 	public Sound(String fileName) {
 		InputStream in = ResourceLoader.load(getClass(),
-				"./sound/" + fileName, "asdf");
+				"./sound/" + fileName, null);
 		music = readBytes(in);
 		loadWaveFile(music);
 	}
