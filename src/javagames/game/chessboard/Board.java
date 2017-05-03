@@ -24,7 +24,7 @@ public class Board extends SpriteObject {
     		}
     	}
     	
-    	Sound sound = new Sound("test.wav");
+    	Sound sound = new Sound("Pippin the Hunchback.wav");
     	sound.playSound(true);
     }
     
